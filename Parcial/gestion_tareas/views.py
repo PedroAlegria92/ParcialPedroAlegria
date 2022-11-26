@@ -7,4 +7,12 @@ def index(request):
     return HttpResponse('Esta es mi primera vista')
 
 def Login(request):
-    return render(request,'gestion_tareas/Login.html')
+    if request.method=='POST':
+        print('Hola')
+        nombre=request.POST.get('informacion')
+        print(str(nombre))
+    return render(request,'gestion_tareas/Login.html',{
+        'nombre':'Pedro',
+        'apellido':'Alegria',
+        'edad':'25'
+    })

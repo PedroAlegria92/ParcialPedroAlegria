@@ -7,7 +7,23 @@
     </head>
     <body>
 
-        <h2>Ejemplo</h2>
+        <h2>Bienvenido</h2>
+        <h4>Nombre:{{nombre}}</h4>
+        <h4>Apellido:{{apellido}}</h4>
+        <h4>Edad:{{edad}}</h4>
+        <br>
+
+        <h3>Ingrese nuevo usuario</h3>
+        <form method="POST" action="{% url 'gestion_tareas:Login' %}">
+        {% csrf_token %}
+
+            <input type="Text" name="informacion">
+            <button type="Submit">Guardar informacion</button>
+
+        </form>
+
+
+
 
     </body>
 
