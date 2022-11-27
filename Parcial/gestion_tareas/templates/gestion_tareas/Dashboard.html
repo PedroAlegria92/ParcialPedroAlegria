@@ -2,7 +2,7 @@
 <html>
     <head>
 
-        <title>Login</title>
+        <title>Dashboard</title>
 
     </head>
     <body>
@@ -23,7 +23,7 @@
         <h4>Usuario designado:{{Tareas.Usuario_designado}}</h4>
         {% endfor %}
 
-        <form method="POST" action="{% url 'gestion_tareas:Login' %}">
+        <form method="POST" action="{% url 'gestion_tareas:Dashboard' %}">
         {% csrf_token %}
 
             <input type="Text" name="TituloTarea">
