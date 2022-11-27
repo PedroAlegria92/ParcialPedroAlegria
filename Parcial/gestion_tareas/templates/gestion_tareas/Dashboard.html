@@ -15,6 +15,7 @@
         <h4>Título:{{Tareas.Titulo}}</h4>
         <h4>Fecha de creación:{{Tareas.Fecha_de_creacion}}</h4>
         <a class="btn btn-success" href="{% url 'gestion_tareas:Detalletareas' Tareas.id %}">Ver Tarea</a>
+        <a class="btn btn-danger" href="{% url 'gestion_tareas:eliminarTarea' Tareas.id %}">Eliminar Tarea</a>
         <br>
         {% endfor %}
 

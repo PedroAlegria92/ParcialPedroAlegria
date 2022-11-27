@@ -2,6 +2,8 @@ from django.shortcuts import render
 from django.http import HttpResponse
 from .models import Tarea
 from .models import Usuario
+from django.http import HttpResponseRedirect
+from django.urls import reverse
 
 #from django.shortcuts import redirect
 
@@ -49,3 +51,8 @@ def Detalletareas(request,ind):
     return render(request,'gestion_tareas/Detalletareas.html',{
         'tarea_seleccionada':tarea_seleccionada
     })
+
+def eliminarTarea(request,ind):
+    tarea_eliminar=Tarea.objects.get(id=ind)
+    tarea_eliminar.delete()
+    return HttpResponseRedirect(reverse('gestion_tareas:Dashboard'))
