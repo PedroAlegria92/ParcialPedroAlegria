@@ -8,19 +8,14 @@
     <body>
 
         <h2>Bienvenido</h2>
-        <!--<h4>Nombre:{{nombre}}</h4>
-        <h4>Apellido:{{apellido}}</h4>
-        <h4>Edad:{{edad}}</h4>
-        <br>-->
 
         <h3>Ingrese nueva tarea</h3>
 
         {% for Tareas in TareaMODELO %}
         <h4>Título:{{Tareas.Titulo}}</h4>
-        <h4>Descripción:{{Tareas.Descripcion}}</h4>
         <h4>Fecha de creación:{{Tareas.Fecha_de_creacion}}</h4>
-        <h4>Fecha de entrega:{{Tareas.Fecha_de_entrega}}</h4>
-        <h4>Usuario designado:{{Tareas.Usuario_designado}}</h4>
+        <a class="btn btn-success" href="{% url 'gestion_tareas:Detalletareas' Tareas.id %}">Ver Tarea</a>
+        <br>
         {% endfor %}
 
         <form method="POST" action="{% url 'gestion_tareas:Dashboard' %}">

@@ -3,7 +3,7 @@ from django.http import HttpResponse
 from .models import Tarea
 from .models import Usuario
 
-from django.shortcuts import redirect
+#from django.shortcuts import redirect
 
 # Create your views here.
 
@@ -23,9 +23,13 @@ def Login(request):
                 PAGINA=1
                 break
     if PAGINA==0:
-        return render(request,'gestion_tareas/Login.html',{'UsuarioMODELO':Tarea.objects.all().order_by('id'),})
+        #return render(request,'gestion_tareas/Login.html',{'UsuarioMODELO':Tarea.objects.all().order_by('id'),})
+        return render(request,'gestion_tareas/Login.html')
     else:
-        return render(request,'gestion_tareas/Dashboard.html',{'UsuarioMODELO':Tarea.objects.all().order_by('id'),})
+        #return render(request,'gestion_tareas/Dashboard.html',{'UsuarioMODELO':Tarea.objects.all().order_by('id'),})
+            return render(request,'gestion_tareas/Dashboard.html',{
+                'TareaMODELO':Tarea.objects.all().order_by('id'),
+            })
 
 
 def Dashboard(request):
@@ -38,4 +42,10 @@ def Dashboard(request):
         Tarea(Titulo=str(Titulo),Descripcion=str(Descripcion),Fecha_de_creacion=str(Fecha_de_creacion),Fecha_de_entrega=str(Fecha_de_entrega),Usuario_designado=str(Usuario_designado)).save()
     return render(request,'gestion_tareas/Dashboard.html',{
         'TareaMODELO':Tarea.objects.all().order_by('id'),
+    })
+
+def Detalletareas(request,ind):
+    tarea_seleccionada=Tarea.objects.get(id=ind)
+    return render(request,'gestion_tareas/Detalletareas.html',{
+        'tarea_seleccionada':tarea_seleccionada
     })
