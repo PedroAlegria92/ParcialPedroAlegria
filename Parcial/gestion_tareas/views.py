@@ -35,15 +35,21 @@ def Login(request):
 
 
 def Dashboard(request):
+    USUARIOSinformacion=Tarea.objects.all().order_by('id')
     if request.method=='POST':
-        Titulo=request.POST.get('TituloTarea')
-        Descripcion=request.POST.get('DescripcionTarea')
-        Fecha_de_creacion=request.POST.get('FechaCTarea')
-        Fecha_de_entrega=request.POST.get('FechaETarea')
-        Usuario_designado=request.POST.get('UsuarioTarea')
-        Tarea(Titulo=str(Titulo),Descripcion=str(Descripcion),Fecha_de_creacion=str(Fecha_de_creacion),Fecha_de_entrega=str(Fecha_de_entrega),Usuario_designado=str(Usuario_designado)).save()
+        if 'Crear' in request.POST:
+            Titulo=request.POST.get('TituloTarea')
+            Descripcion=request.POST.get('DescripcionTarea')
+            Fecha_de_creacion=request.POST.get('FechaCTarea')
+            Fecha_de_entrega=request.POST.get('FechaETarea')
+            Usuario_designado=request.POST.get('UsuarioTarea')
+            Tarea(Titulo=str(Titulo),Descripcion=str(Descripcion),Fecha_de_creacion=str(Fecha_de_creacion),Fecha_de_entrega=str(Fecha_de_entrega),Usuario_designado=str(Usuario_designado)).save()
+            USUARIOSinformacion=Tarea.objects.all().order_by('id')
+        elif 'Filtrar' in request.POST:
+            USUARIOfiltrado=request.POST.get('USUARIO_FILTRAR')
+            USUARIOSinformacion=Tarea.objects.filter(Usuario_designado=USUARIOfiltrado)
     return render(request,'gestion_tareas/Dashboard.html',{
-        'TareaMODELO':Tarea.objects.all().order_by('id'),
+        'TareaMODELO':USUARIOSinformacion,
     })
 
 def Detalletareas(request,ind):

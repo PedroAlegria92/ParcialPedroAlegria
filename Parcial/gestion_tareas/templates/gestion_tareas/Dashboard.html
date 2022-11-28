@@ -9,7 +9,15 @@
 
         <h2>Bienvenido</h2>
 
-        <h3>Ingrese nueva tarea</h3>
+        <h3>Filtrar por usuario</h3>
+        <form method="POST" url="{% url 'gestion_tareas:Dashboard' %}">
+        {% csrf_token %}
+            <select name="USUARIO_FILTRAR">
+                <option value="4646Y">Prueba</option>
+            </select>
+            <button type="submit" name="Filtrar">Filtrar</button>
+        </form>
+        <button><a href="{% url 'gestion_tareas:Dashboard' %}">Restablecer</a></button>
 
         {% for Tareas in TareaMODELO %}
         <h4>Título:{{Tareas.Titulo}}</h4>
@@ -19,6 +27,7 @@
         <br>
         {% endfor %}
 
+        <h3>Ingrese nueva tarea</h3>
         <form method="POST" action="{% url 'gestion_tareas:Dashboard' %}">
         {% csrf_token %}
 
@@ -27,7 +36,7 @@
             <input type="Text" name="FechaCTarea">
             <input type="Text" name="FechaETarea">
             <input type="Text" name="UsuarioTarea">
-            <button type="Submit">Guardar informacion</button>
+            <button type="Submit" name="Crear">Guardar informacion</button>
 
         </form>
 
