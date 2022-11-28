@@ -1,11 +1,9 @@
-from django.shortcuts import render
+from django.shortcuts import render, redirect
 from django.http import HttpResponse
 from .models import Tarea
 from .models import Usuario
 from django.http import HttpResponseRedirect
 from django.urls import reverse
-
-#from django.shortcuts import redirect
 
 # Create your views here.
 
@@ -29,9 +27,10 @@ def Login(request):
         return render(request,'gestion_tareas/Login.html')
     else:
         #return render(request,'gestion_tareas/Dashboard.html',{'UsuarioMODELO':Tarea.objects.all().order_by('id'),})
-            return render(request,'gestion_tareas/Dashboard.html',{
-                'TareaMODELO':Tarea.objects.all().order_by('id'),
-            })
+        #return render(request,'gestion_tareas/Dashboard.html',{
+            #'TareaMODELO':Tarea.objects.all().order_by('id'),
+        #})
+        return HttpResponseRedirect(reverse('gestion_tareas:Dashboard'))
 
 
 def Dashboard(request):
