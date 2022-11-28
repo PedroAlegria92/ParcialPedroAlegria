@@ -7,8 +7,8 @@
     </head>
     <body>
 
-        <h2>Bienvenido</h2>
-
+        <h2>Dashboard de Tareas</h2>
+        <br>
         <h3>Filtrar por usuario</h3>
         <form method="POST" url="{% url 'gestion_tareas:Dashboard' %}">
         {% csrf_token %}
@@ -17,27 +17,55 @@
                 <option value={{Tareas.Usuario_designado}}>{{Tareas.Usuario_designado}}</option>
                 {% endfor %}
             </select>
+            <br>
+            <br>
             <button type="submit" name="Filtrar">Filtrar</button>
+            <br>
+            <br>
         </form>
+
         <button><a href="{% url 'gestion_tareas:Dashboard' %}">Restablecer</a></button>
-
-        {% for Tareas in TareaMODELO %}
-        <h4>Título:{{Tareas.Titulo}}</h4>
-        <h4>Fecha de creación:{{Tareas.Fecha_de_creacion}}</h4>
-        <a class="btn btn-success" href="{% url 'gestion_tareas:Detalletareas' Tareas.id %}">Ver Tarea</a>
-        <a class="btn btn-danger" href="{% url 'gestion_tareas:eliminarTarea' Tareas.id %}">Eliminar Tarea</a>
         <br>
-        {% endfor %}
+        <br>
+        <br>
+        <br>
+        <br>
+        <br>
+        <table class="table">
+            <thead class="thead-dark">
+                <th>Título</th>
+                <th>Fecha de creación</th>
+            </thead>
+            <tbody>
+                {% for Tareas in TareaMODELO %}
+                <tr>
+                    <td><h4>{{Tareas.Titulo}}</h4></td>
+                    <td><h4>{{Tareas.Fecha_de_creacion}}</h4></td>
+                    <td><a class="btn btn-success" href="{% url 'gestion_tareas:Detalletareas' Tareas.id %}">Ver Tarea</a></td>
+                    <td><a class="btn btn-danger" href="{% url 'gestion_tareas:eliminarTarea' Tareas.id %}">Eliminar Tarea</a></td>
+                </tr>
+                {% endfor %}
+            </tbody>
+        </table>
 
+        <br>
+        <br>
         <h3>Ingrese nueva tarea</h3>
         <form method="POST" action="{% url 'gestion_tareas:Dashboard' %}">
         {% csrf_token %}
 
+            <h5>Tarea</h5>
             <input type="Text" name="TituloTarea">
+            <h5>Descripcion</h5>
             <input type="Text" name="DescripcionTarea">
+            <h5>Fecha Creación</h5>
             <input type="Text" name="FechaCTarea">
+            <h5>Fecha Entrega</h5>
             <input type="Text" name="FechaETarea">
+            <h5>Usuario</h5>
             <input type="Text" name="UsuarioTarea">
+            <br>
+            <br>
             <button type="Submit" name="Crear">Guardar informacion</button>
 
         </form>

@@ -7,13 +7,16 @@
     </head>
     <body>
 
-        <h3>Ingrese nueva tarea</h3>
+        <h3>Ingreso al Sistema</h3>
 
         <form method="POST" action="{% url 'gestion_tareas:Login' %}">
         {% csrf_token %}
-
+            <h5>Nombre</h5>
             <input type="Text" name="NombreUsuario">
+            <h5>Contraseña</h5>
             <input type="Text" name="ClaveUsuario">
+            <br>
+            <br>
             <button type="Submit">Ingresar</button>
 
         </form>
