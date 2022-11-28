@@ -13,7 +13,9 @@
         <form method="POST" url="{% url 'gestion_tareas:Dashboard' %}">
         {% csrf_token %}
             <select name="USUARIO_FILTRAR">
-                <option value="4646Y">Prueba</option>
+                {% for Tareas in TareaMODELO %}
+                <option value={{Tareas.Usuario_designado}}>{{Tareas.Usuario_designado}}</option>
+                {% endfor %}
             </select>
             <button type="submit" name="Filtrar">Filtrar</button>
         </form>
